@@ -52,9 +52,7 @@ $$
 
 which renders to
 
-$$
- \int \frac { 4 x } { \sqrt { x ^ { 2 } + 1 } } d x  
-$$
+![](./inst/eq_no_01.png)
 
 ## API Documentation
 
