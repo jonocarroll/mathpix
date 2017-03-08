@@ -11,6 +11,8 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 ```
+![](./inst/logo_blue.png)
+
 # mathpix
 
 ## Installation
@@ -18,3 +20,16 @@ knitr::opts_chunk$set(
 ```{r, eval = FALSE}
 devtools::install_github("jonocarroll/mathpix")
 ```
+
+## AUTHENTICATION
+
+Obtain a Mathpix API key by e-mailing [support@mathpix.com](mailto:support@mathpix.com) then set the following values in your `~/.Renviron` file
+
+```{r, eval = FALSE}
+MATHPIX_APP_ID=yourID
+MATHPIX_APP_KEY=yourKEY
+```
+
+## API Documentation
+
+Refer to http://docs.mathpix.com/

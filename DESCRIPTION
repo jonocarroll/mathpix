@@ -5,9 +5,7 @@ Authors@R: person("Jonathan", "Carroll", email = "rkpg@jcarroll.com.au", role = 
 Description: Given an image of a formula (typset or handwritten) this package provides calls to the 
     Mathpix service to produce the LaTeX code which should generate that image, and paste it into a 
     (e.g. an rmarkdown) document.
-Depends: R (>= 3.3.2),
-    httr,
-    rmarkdown
+Depends: R (>= 3.3.2)
 License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
@@ -15,3 +13,7 @@ URL: https://github.com/jonocarroll/mathpix
 BugReports: https://github.com/jonocarroll/mathpix/issues
 Suggests: testthat
 RoxygenNote: 6.0.1
+Imports: purrr,
+    base64enc,
+    httr,
+    rmarkdown
