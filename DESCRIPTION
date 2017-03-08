@@ -16,4 +16,5 @@ RoxygenNote: 6.0.1
 Imports: purrr,
     base64enc,
     httr,
-    rmarkdown
+    rmarkdown,
+    clipr

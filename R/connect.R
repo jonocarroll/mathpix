@@ -18,7 +18,7 @@ credentials <- function() {
 ## THE BASE64 OUTPUT WAS WRAPPED SO
 ## -w0 WAS REQUIRED
 
-mathpix <- function(img, trial = FALSE) {
+mathpix_api <- function(img, trial = FALSE) {
 
     if (!file.exists(img)) {
         warning("Unable to locate that image.")
@@ -54,5 +54,22 @@ mathpix <- function(img, trial = FALSE) {
     } else {
         return(content(res$result)$latex)
     }
+
+}
+
+rmarkdown_block <- function(img, trial = FALSE) {
+
+    header <- "$$\n"
+    footer <- "\n$$"
+
+    body <- mathpix_api(img = img, trial = trial)
+
+    return(paste(header, body, footer))
+}
+
+mathpix <- function(img, trial = FALSE) {
+
+    block <- rmarkdown_block(img, trial)
+    rstudioapi::insertText(block)
 
 }
