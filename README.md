@@ -1,16 +1,8 @@
----
-output: github_document
----
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-
 ![](./inst/logo_blue.png)
 
 # mathpix
 
 ## Installation
-
 
 ```r
 devtools::install_github("jonocarroll/mathpix")
@@ -19,7 +11,6 @@ devtools::install_github("jonocarroll/mathpix")
 ## Authentication
 
 Obtain a Mathpix API key by e-mailing [support@mathpix.com](mailto:support@mathpix.com) then set the following values in your `~/.Renviron` file
-
 
 ```r
 MATHPIX_APP_ID=yourID
@@ -49,9 +40,7 @@ $$
 
 which renders to
 
-
-<img src="https://rawgit.com/jonocarroll/mathpix/master/inst/eq_no_02.png" alt="Equation Fail"height="20">
-
+<img src="https://rawgit.com/jonocarroll/mathpix/master/eq_no_02.png" alt="Equation Fail"height="20">
 
 ## API Documentation
 
