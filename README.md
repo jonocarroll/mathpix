@@ -45,6 +45,20 @@ which renders to
 
 ![](./inst/eq_no_01.png)
 
+Even complicated, hand-drawn figures work
+
+![](./inst/matrix_3x3.jpg)
+
+``` r
+mathpix("./inst/matrix_3x3.jpg")
+```
+
+    $$
+     A = \left( \begin{array} { l l l } { 2 } & { 7 } & { 3 } \\ { 3 } & { 5 } & { 2 } \\ { 9 } & { 4 } & { 1 } \\ \end{array} \right)  
+    $$
+
+![](./inst/eq_no_02.png)
+
 API Documentation
 -----------------
 
