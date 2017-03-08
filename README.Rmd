@@ -11,3 +11,10 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 ```
+# mathpix
+
+## Installation
+
+```{r, eval = FALSE}
+devtools::install_github("jonocarroll/mathpix")
+```
