@@ -152,7 +152,7 @@ render_latex <- function(latex, file = NULL) {
     safe_png <- purrr::safely(latexreadme::png_latex)
 
     img <- safe_png(latex)
-    if (!is.null(img$result))
+    if (!is.null(img$error)) stop(img$error)
 
     # if no target file was provided, copy the file to the
     # current directory with the temp filename
