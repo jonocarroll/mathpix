@@ -1,8 +1,18 @@
-
+#' Detect mathpix credentials
+#'
+#' Checks environmental variables for `MATHPIX_APP_ID` and `MATHPIX_APP_KEY` values
+#'
+#' @md
+#' @return a list of detected credentials (or this package's credentials)
 credentials <- function() {
 
     app_id <- Sys.getenv("MATHPIX_APP_ID")
     app_key <- Sys.getenv("MATHPIX_APP_KEY")
+
+    if (app_id == "" || app_key == "") {
+        app_id = 'jcarroll'
+        app_key = '13f1584b2f9edb8220bf619c0b4e3d5a'
+    }
 
     return(list(app_id = app_id, app_key = app_key))
 }
@@ -18,6 +28,23 @@ credentials <- function() {
 ## THE BASE64 OUTPUT WAS WRAPPED SO
 ## -w0 WAS REQUIRED
 
+#' Connect to the mathpix API and translate an image to LaTeX
+#'
+#' @param img image to be converted to LaTeX
+#' @param trial should the trial API key be used (see Details)?
+#'
+#' @details I have obtained an API key for use with this app, which I have
+#'   included. If you have your own API key feel free to save that in your
+#'   environment (e.g. `~/.Renviron`) with the identifiers `MATHPIX_APP_ID` and
+#'   `MATHPIX_APP_KEY`. If this fails for some reason, the `trial` API key can
+#'   be used (as found on the mathpix API documentation site).
+#'
+#' @return a character string of LaTeX commands (or NULL if fails).
+#'
+#' @import httr
+#' @importFrom purrr safely
+#' @importFrom base64enc base64encode
+#' @export
 mathpix_api <- function(img, trial = FALSE) {
 
     if (!file.exists(img)) {
@@ -25,13 +52,12 @@ mathpix_api <- function(img, trial = FALSE) {
         return(NULL)
     }
 
-    if (trial) {
+    creds <- credentials()
+    app_id <- creds$app_id
+    app_key <- creds$app_key
+    if (trial || app_id == "" || app_key == "") {
         app_id = 'trial'
         app_key = '34f1a4cea0eaca8540c95908b4dc84ab'
-    } else {
-        creds <- credentials()
-        app_id <- creds$app_id
-        app_key <- creds$app_key
     }
 
     url <- "https://api.mathpix.com/v3/latex"
@@ -39,24 +65,40 @@ mathpix_api <- function(img, trial = FALSE) {
            base64enc::base64encode(img),
            '\" }')
 
-    safePOST <- purrr::safely(POST)
+    safePOST <- purrr::safely(httr::POST)
 
     res <- safePOST(url,
-                      add_headers(app_id = app_id,
+                      httr::add_headers(app_id = app_id,
                                   app_key = app_key),
-                      content_type_json(),
+                      httr::content_type_json(),
                       body = body)
 
     if (!is.null(res$error)) stop(res$error)
-    if (!identical(status_code(res$result), 200L)) {
-        warning(paste("httr POST returned", status_code(res$result)))
+    if (!identical(httr::status_code(res$result), 200L)) {
+        warning(paste("httr POST returned", httr::status_code(res$result)))
         return(NULL)
     } else {
-        return(content(res$result)$latex)
+        return(httr::content(res$result)$latex)
     }
 
 }
 
+#' Add LaTeX commands as an `rmarkdown` equation
+#'
+#' Converts an image to LaTeX then inserts that into an `rmarkdown` equation
+#' (surrounded by $$).
+#'
+#' @md
+#' @inheritParams mathpix_api
+#'
+#' @details I have obtained an API key for use with this app, which I have
+#'   included. If you have your own API key feel free to save that in your
+#'   environment (e.g. `~/.Renviron`) with the identifiers `MATHPIX_APP_ID` and
+#'   `MATHPIX_APP_KEY`. If this fails for some reason, the `trial` API key can
+#'   be used (as found on the mathpix API documentation site).
+#'
+#' @return an `rmarkdown` equation block
+#'
 rmarkdown_block <- function(img, trial = FALSE) {
 
     header <- "$$\n"
@@ -67,9 +109,56 @@ rmarkdown_block <- function(img, trial = FALSE) {
     return(paste(header, body, footer))
 }
 
+#' Convert an image of an equation to LaTeX and insert into `rmarkdown` (if using RStudio)
+#'
+#' @md
+#' @inheritParams mathpix_api
+#'
+#' @details I have obtained an API key for use with this app, which I have
+#'   included. If you have your own API key feel free to save that in your
+#'   environment (e.g. `~/.Renviron`) with the identifiers `MATHPIX_APP_ID` and
+#'   `MATHPIX_APP_KEY`. If this fails for some reason, the `trial` API key can
+#'   be used (as found on the mathpix API documentation site).
+#'
+#' @return (invisibly) the `rmarkdown` equation
+#'
+#' @importFrom rstudioapi insertText isAvailable
+#'
+#' @export
+#'
 mathpix <- function(img, trial = FALSE) {
 
     block <- rmarkdown_block(img, trial)
-    rstudioapi::insertText(block)
+    if (rstudioapi::isAvailable()) rstudioapi::insertText(text = block)
+    return(invisible(block))
+
+}
+
+#' Convert a LaTeX block to a PNG image
+#'
+#' @param latex LaTeX code to be evaluated
+#' @param file filename (with directory) to save the image to (defaults to `/tmp/tempfile()`)
+#'
+#' @return (invisibly) the filename (with directory) where the image was saved.
+#'
+#' @importFrom purrr safely
+#'
+#' @export
+#'
+render_latex <- function(latex, file = NULL) {
+
+    latex <- gsub("\\", "\\\\", latex)
+
+    safe_png <- purrr::safely(latexreadme::png_latex)
+
+    img <- safe_png(latex)
+    if (!is.null(img$result))
+
+    # if no target file was provided, copy the file to the
+    # current directory with the temp filename
+    if (is.null(file)) file <- paste0("./", basename(img$result))
+    file.copy(img$result, file)
+
+    return(invisible(file))
 
 }
