@@ -147,7 +147,7 @@ mathpix <- function(img, trial = FALSE) {
 #'
 render_latex <- function(latex, file = NULL) {
 
-    latex <- gsub("\\", "\\\\", latex)
+    # latex <- gsub("\\", "\\\\", latex)
 
     safe_png <- purrr::safely(latexreadme::png_latex)
 
