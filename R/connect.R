@@ -60,6 +60,8 @@ mathpix_api <- function(img, trial = FALSE) {
         app_key = '34f1a4cea0eaca8540c95908b4dc84ab'
     }
 
+    message(paste0("Using Mathpix APP_ID=", app_id))
+
     url <- "https://api.mathpix.com/v3/latex"
     body <- paste0('{"url": "data:image/jpeg;base64, ',
            base64enc::base64encode(img),
