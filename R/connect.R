@@ -129,7 +129,7 @@ rmarkdown_block <- function(img, trial = FALSE) {
 mathpix <- function(img, trial = FALSE) {
 
     block <- rmarkdown_block(img, trial)
-    if (rstudioapi::isAvailable()) rstudioapi::insertText(text = block)
+    if (rstudioapi::isAvailable() && interactive()) rstudioapi::insertText(text = block)
     return(invisible(block))
 
 }
