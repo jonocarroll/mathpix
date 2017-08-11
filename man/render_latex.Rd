@@ -2,14 +2,15 @@
 % Please edit documentation in R/connect.R
 \name{render_latex}
 \alias{render_latex}
-\title{Convert a LaTeX block to a PNG image}
+\title{Convert a 'LaTeX' expression to an image (render)}
 \usage{
 render_latex(latex, fileDir = NULL, ...)
 }
 \arguments{
-\item{latex}{LaTeX code to be evaluated}
+\item{latex}{'LaTeX' code to be evaluated. Surround in \code{$} or \code{$$}.}
 
-\item{fileDir}{directory in which to save the image to (defaults to `/tmp/tempfile()`)}
+\item{fileDir}{directory in which to save the image to (defaults to
+`/tmp/tempfile()`).}
 
 \item{...}{other options to pass to \code{\link[texPreview]{texPreview}}.}
 }
@@ -17,5 +18,12 @@ render_latex(latex, fileDir = NULL, ...)
 NULL (invisibly)
 }
 \description{
-Convert a LaTeX block to a PNG image
+This calls \code{\link[texPreview]{texPreview}} to render a 'LaTeX'
+expression into an image, either as a temporary file or saved to disk.
+}
+\examples{
+\dontrun{
+## requires pdflatex
+latex_expression <- "$$\\\\int \\\\frac { 4 x } { \\\\sqrt { x ^ { 2 } + 1 } } d x$$"
+render_latex(latex_expression)}
 }

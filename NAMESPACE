@@ -3,6 +3,7 @@
 export(mathpix)
 export(mathpix_api)
 export(render_latex)
+export(rmarkdown_block)
 import(httr)
 importFrom(base64enc,base64encode)
 importFrom(purrr,safely)

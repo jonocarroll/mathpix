@@ -2,7 +2,7 @@
 % Please edit documentation in R/connect.R
 \name{mathpix}
 \alias{mathpix}
-\title{Convert an image of an equation to LaTeX and insert into \code{rmarkdown} (if using RStudio)}
+\title{Convert an image of an equation to a 'LaTeX' expression}
 \usage{
 mathpix(img, trial = FALSE)
 }
@@ -15,7 +15,11 @@ mathpix(img, trial = FALSE)
 (invisibly) the \code{rmarkdown} equation
 }
 \description{
-Convert an image of an equation to LaTeX and insert into \code{rmarkdown} (if using RStudio)
+Given an image file location, \code{mathpix} performs the relevant
+transformations and send the data to the 'Mathpix' API, which returns a
+'LaTeX' expression which should generate the typeset equation/expression in
+that image. When using 'RStudio', the resulting 'LaTeX' expression is
+automatically inserted into the current \code{rmarkdown} document.
 }
 \details{
 I have obtained an API key for use with this app, which I have
@@ -23,4 +27,13 @@ included. If you have your own API key feel free to save that in your
 environment (e.g. \code{~/.Renviron}) with the identifiers \code{MATHPIX_APP_ID} and
 \code{MATHPIX_APP_KEY}. If this fails for some reason, the \code{trial} API key can
 be used (as found on the mathpix API documentation site).
+}
+\examples{
+\dontrun{
+mathpix(system.file("eq_no_01.png", package = "mathpix"))
+## returns
+## $$\\n \\\\int \\\\frac { 4x } { \\\\sqrt { x ^ { 2} + 1} } d x \\n$$}
+}
+\references{
+\url{https://mathpix.com/}
 }

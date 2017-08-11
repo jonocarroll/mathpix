@@ -3,6 +3,7 @@
 #' Checks environmental variables for `MATHPIX_APP_ID` and `MATHPIX_APP_KEY` values
 #'
 #' @md
+#' @keywords internal
 #' @return a list of detected credentials (or this package's credentials)
 credentials <- function() {
 
@@ -37,13 +38,14 @@ credentials <- function() {
 #'   included. If you have your own API key feel free to save that in your
 #'   environment (e.g. `~/.Renviron`) with the identifiers `MATHPIX_APP_ID` and
 #'   `MATHPIX_APP_KEY`. If this fails for some reason, the `trial` API key can
-#'   be used (as found on the mathpix API documentation site).
+#'   be used (as found on the 'Mathpix' API documentation site).
 #'
 #' @return a character string of LaTeX commands (or NULL if fails).
 #'
 #' @import httr
 #' @importFrom purrr safely
 #' @importFrom base64enc base64encode
+#' @keywords internal
 #' @export
 mathpix_api <- function(img, trial = FALSE) {
 
@@ -100,7 +102,8 @@ mathpix_api <- function(img, trial = FALSE) {
 #'   be used (as found on the mathpix API documentation site).
 #'
 #' @return an `rmarkdown` equation block
-#'
+#' @keywords internal
+#' @export
 rmarkdown_block <- function(img, trial = FALSE) {
 
     header <- "$$\n"
@@ -111,9 +114,16 @@ rmarkdown_block <- function(img, trial = FALSE) {
     return(paste(header, body, footer))
 }
 
-#' Convert an image of an equation to LaTeX and insert into `rmarkdown` (if using RStudio)
+#' Convert an image of an equation to a 'LaTeX' expression
+#'
+#' Given an image file location, \code{mathpix} performs the relevant
+#' transformations and send the data to the 'Mathpix' API, which returns a
+#' 'LaTeX' expression which should generate the typeset equation/expression in
+#' that image. When using 'RStudio', the resulting 'LaTeX' expression is
+#' automatically inserted into the current `rmarkdown` document.
 #'
 #' @md
+#'
 #' @inheritParams mathpix_api
 #'
 #' @details I have obtained an API key for use with this app, which I have
@@ -126,8 +136,15 @@ rmarkdown_block <- function(img, trial = FALSE) {
 #'
 #' @importFrom rstudioapi insertText isAvailable
 #'
+#' @references \url{https://mathpix.com/}
+#'
 #' @export
 #'
+#' @examples
+#' \dontrun{
+#' mathpix(system.file("eq_no_01.png", package = "mathpix"))
+#' ## returns
+#' ## $$\n \\int \\frac { 4x } { \\sqrt { x ^ { 2} + 1} } d x \n$$}
 mathpix <- function(img, trial = FALSE) {
 
     block <- rmarkdown_block(img, trial)
@@ -136,10 +153,14 @@ mathpix <- function(img, trial = FALSE) {
 
 }
 
-#' Convert a LaTeX block to a PNG image
+#' Convert a 'LaTeX' expression to an image (render)
 #'
-#' @param latex LaTeX code to be evaluated
-#' @param fileDir directory in which to save the image to (defaults to `/tmp/tempfile()`)
+#' This calls \code{\link[texPreview]{texPreview}} to render a 'LaTeX'
+#' expression into an image, either as a temporary file or saved to disk.
+#'
+#' @param latex 'LaTeX' code to be evaluated. Surround in \code{$} or \code{$$}.
+#' @param fileDir directory in which to save the image to (defaults to
+#'   `/tmp/tempfile()`).
 #' @param ... other options to pass to \code{\link[texPreview]{texPreview}}.
 #'
 #' @return NULL (invisibly)
@@ -147,7 +168,11 @@ mathpix <- function(img, trial = FALSE) {
 #' @importFrom purrr safely
 #'
 #' @export
-#'
+#' @examples
+#' \dontrun{
+#' ## requires pdflatex
+#' latex_expression <- "$$\\int \\frac { 4 x } { \\sqrt { x ^ { 2 } + 1 } } d x$$"
+#' render_latex(latex_expression)}
 render_latex <- function(latex, fileDir = NULL, ...) {
 
     safe_png <- purrr::safely(texPreview::texPreview)

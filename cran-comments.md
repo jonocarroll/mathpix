@@ -18,4 +18,11 @@
 
 This is a new release, so there are no reverse dependencies.
 
+## Resubmit notes
+
+Resubmitting after applying recommended changes:
+ - updated titles
+ - added examples
+ - made unnecessary functions internal
+ 
 ---

@@ -25,3 +25,4 @@ environment (e.g. \code{~/.Renviron}) with the identifiers \code{MATHPIX_APP_ID}
 \code{MATHPIX_APP_KEY}. If this fails for some reason, the \code{trial} API key can
 be used (as found on the mathpix API documentation site).
 }
+\keyword{internal}
