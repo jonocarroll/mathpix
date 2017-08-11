@@ -4,3 +4,4 @@
 ^README-.*\.png$
 ^revdep$
 ^\.travis\.yml$
+^cran-comments\.md$
