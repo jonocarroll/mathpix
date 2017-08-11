@@ -1,6 +1,6 @@
 Package: mathpix
 Title: Mathpix (image to LaTeX) support in rmarkdown
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: person("Jonathan", "Carroll", email = "rpkg@jcarroll.com.au", role = c("aut", "cre"))
 Description: Given an image of a formula (typset or handwritten) this package
     provides calls to the Mathpix service to produce the LaTeX code which should
@@ -19,8 +19,6 @@ Imports:
     purrr,
     base64enc,
     httr,
-    rmarkdown,
-    clipr,
     rstudioapi,
     texPreview
-Remotes: muschellij2/latexreadme
+
