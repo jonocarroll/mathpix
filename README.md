@@ -5,6 +5,12 @@
 mathpix
 =======
 
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/mathpix)](https://cran.r-project.org/package=mathpix) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--08--11-yellowgreen.svg)](/commits/master)
+
+[![Linux/Mac Travis Build Status](https://img.shields.io/travis/jonocarroll/mathpix/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/jonocarroll/mathpix) [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/jonocarroll/mathpix/master.svg?label=Windows)](https://ci.appveyor.com/project/jonocarroll/mathpix) [![codecov](https://codecov.io/gh/jonocarroll/mathpix/branch/master/graph/badge.svg)](https://codecov.io/gh/jonocarroll/mathpix)
+
+[![Downloads](http://cranlogs.r-pkg.org/badges/mathpix)](http://www.r-pkg.org/pkg/mathpix) [![GitHub forks](https://img.shields.io/github/forks/jonocarroll/mathpix.svg)](https://github.com/jonocarroll/mathpix/network) [![GitHub stars](https://img.shields.io/github/stars/jonocarroll/mathpix.svg)](https://github.com/jonocarroll/mathpix/stargazers) [![Twitter](https://img.shields.io/twitter/url/https/github.com/jonocarroll/mathpix.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
+
 Installation
 ------------
 
