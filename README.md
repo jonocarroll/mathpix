@@ -5,10 +5,6 @@
 mathpix
 =======
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/mathpix)](https://cran.r-project.org/package=mathpix)
-[![Travis-CI Build Status](https://travis-ci.org/jonocarroll/mathpix.svg?branch=master)](https://travis-ci.org/jonocarroll/mathpix)
-[![Github All Releases](https://img.shields.io/github/downloads/jonocarroll/mathpix/total.svg)](https://github.com/jonocarroll/mathpix)
-
 Installation
 ------------
 

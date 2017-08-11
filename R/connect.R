@@ -139,28 +139,20 @@ mathpix <- function(img, trial = FALSE) {
 #' Convert a LaTeX block to a PNG image
 #'
 #' @param latex LaTeX code to be evaluated
-#' @param file filename (with directory) to save the image to (defaults to `/tmp/tempfile()`)
+#' @param fileDir directory in which to save the image to (defaults to `/tmp/tempfile()`)
+#' @param ... other options to pass to \code{\link[texPreview]{texPreview}}.
 #'
-#' @return (invisibly) the filename (with directory) where the image was saved.
+#' @return NULL (invisibly)
 #'
 #' @importFrom purrr safely
 #'
 #' @export
 #'
-render_latex <- function(latex, file = NULL) {
+render_latex <- function(latex, fileDir = NULL, ...) {
 
-    # latex <- gsub("\\", "\\\\", latex)
-
-    safe_png <- purrr::safely(latexreadme::png_latex)
-
-    img <- safe_png(latex)
+    safe_png <- purrr::safely(texPreview::texPreview)
+    img <- safe_png(obj = latex, stem = "eq", fileDir = fileDir)
     if (!is.null(img$error)) stop(img$error)
-
-    # if no target file was provided, copy the file to the
-    # current directory with the temp filename
-    if (is.null(file)) file <- paste0("./", basename(img$result))
-    file.copy(img$result, file)
-
-    return(invisible(file))
+    return(invisible(NULL))
 
 }

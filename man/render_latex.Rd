@@ -4,15 +4,17 @@
 \alias{render_latex}
 \title{Convert a LaTeX block to a PNG image}
 \usage{
-render_latex(latex, file = NULL)
+render_latex(latex, fileDir = NULL, ...)
 }
 \arguments{
 \item{latex}{LaTeX code to be evaluated}
 
-\item{file}{filename (with directory) to save the image to (defaults to `/tmp/tempfile()`)}
+\item{fileDir}{directory in which to save the image to (defaults to `/tmp/tempfile()`)}
+
+\item{...}{other options to pass to \code{\link[texPreview]{texPreview}}.}
 }
 \value{
-(invisibly) the filename (with directory) where the image was saved.
+NULL (invisibly)
 }
 \description{
 Convert a LaTeX block to a PNG image
