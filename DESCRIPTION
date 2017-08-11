@@ -21,6 +21,5 @@ Imports:
     httr,
     rmarkdown,
     clipr,
-    latexreadme,
     rstudioapi
 Remotes: muschellij2/latexreadme
