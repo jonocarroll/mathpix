@@ -30,10 +30,9 @@ be used (as found on the mathpix API documentation site). Refer to
 \url{https://docs.mathpix.com/} for full details.
 }
 \examples{
-\dontrun{
 mathpix(system.file("eq_no_01.png", package = "mathpix"))
 ## returns
-## $$\\n \\\\int \\\\frac { 4x } { \\\\sqrt { x ^ { 2} + 1} } d x \\n$$}
+## $$\\n \\\\int \\\\frac { 4x } { \\\\sqrt { x ^ { 2} + 1} } d x \\n$$
 }
 \references{
 \url{https://mathpix.com/}
