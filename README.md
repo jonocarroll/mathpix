@@ -5,7 +5,7 @@
 mathpix
 =======
 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/mathpix)](https://cran.r-project.org/package=mathpix) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--10--18-yellowgreen.svg)](/commits/master)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/mathpix)](https://cran.r-project.org/package=mathpix) [![packageversion](https://img.shields.io/badge/Package%20version-0.2.0-orange.svg?style=flat-square)](commits/master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--10--18-yellowgreen.svg)](/commits/master)
 
 [![Linux/Mac Travis Build Status](https://img.shields.io/travis/jonocarroll/mathpix/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/jonocarroll/mathpix) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jonocarroll/mathpix?branch=master&svg=true)](https://ci.appveyor.com/project/jonocarroll/mathpix) [![codecov](https://codecov.io/gh/jonocarroll/mathpix/branch/master/graph/badge.svg)](https://codecov.io/gh/jonocarroll/mathpix)
 

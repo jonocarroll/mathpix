@@ -1,11 +1,12 @@
 ## Test environments
 * local ubuntu 16.04.2, R 3.4.1
-* rhub check_on_windows() x86_64-w64-mingw32 (64-bit), R 3.4.1
-* rhub check_on_linux() x86_64-pc-linux-gnu (64-bit), R 3.4.1
-* rhub check_on_macos() 10.11 El Capitan, x86_64-apple-darwin15.6.0 (64-bit), R 3.4.1
-* rhub check_for_cran() 
-* travis-ci ubuntu 12.04.5, R 3.4.1
-* win-builder (devel, release, and oldrelease)
+* rhub::check_on_windows() x86_64-w64-mingw32 (64-bit), 3.4.2
+* rhub::check_on_linux() x86_64-pc-linux-gnu (64-bit), R 3.4.2
+* rhub::check_on_macos() x86_64-apple-darwin15.6.0 (64-bit), R 3.4.1
+* rhub::check_for_cran() "windows-x86_64-devel" "ubuntu-gcc-release" "fedora-clang-devel" 
+* travis-ci Ubuntu 14.04.5 LTS, R 3.4.2
+* appveyor i386-w64-mingw32/i386 (32-bit), r 3.4.2
+* win-builder (R-devel, R-release) via devtools::build_win()
 
 ## R CMD check results
 
@@ -13,17 +14,14 @@
 
 ## win-builder results
 
-* 1 NOTE generated due to this being a new release.
+R-devel: OK
+R-release: 1 NOTE on Maintainer
+
+## r-hub results
+
+1 ERROR due to incorrect testthat configuration on Windows Server
+1 NOTE due to ORCID on fedora-clang-devel
 
 ## Reverse dependencies
 
-This is a new release, so there are no reverse dependencies.
-
-## Resubmit notes
-
-Resubmitting after applying recommended changes:
- - updated titles
- - added examples
- - made unnecessary functions internal
- - included example without \dontrun 
----
+None.
