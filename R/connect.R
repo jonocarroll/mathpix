@@ -50,8 +50,7 @@ credentials <- function() {
 mathpix_api <- function(img, trial = FALSE) {
 
     if (!file.exists(img)) {
-        warning("Unable to locate that image.")
-        return(NULL)
+        stop("Unable to locate that image.", call. = FALSE)
     }
 
     creds <- credentials()
@@ -82,7 +81,12 @@ mathpix_api <- function(img, trial = FALSE) {
         warning(paste("httr POST returned", httr::status_code(res$result)))
         return(NULL)
     } else {
-        return(httr::content(res$result)$latex)
+        resp <- httr::content(res$result)
+        ## content may contain an internal error
+        if (resp$error != "") {
+            warning(paste0("Mathpix says:\n", resp$error), call. = FALSE)
+        }
+        return(resp$latex)
     }
 
 }
@@ -94,6 +98,8 @@ mathpix_api <- function(img, trial = FALSE) {
 #'
 #' @md
 #' @inheritParams mathpix_api
+#' @param retry If Mathpix is not able to process the image, should we try again with
+#'   a re-processed image?
 #'
 #' @details I have obtained an API key for use with this app, which I have
 #'   included. If you have your own API key feel free to save that in your
@@ -104,14 +110,41 @@ mathpix_api <- function(img, trial = FALSE) {
 #' @return an `rmarkdown` equation block
 #' @keywords internal
 #' @export
-rmarkdown_block <- function(img, trial = FALSE) {
+rmarkdown_block <- function(img, trial = FALSE, retry = FALSE) {
 
     header <- "$$\n"
     footer <- "\n$$"
 
     body <- mathpix_api(img = img, trial = trial)
 
+    if (body == "") {
+        warning("Unable to process image.", call. = FALSE)
+        if (retry) {
+            message("Attempting repeat with grayscale converted image.")
+            newimg <- magick::image_convert(magick::image_read(img), format = "png", type = "bilevel", colorspace = "gray")
+            newimg <- magick::image_contrast(newimg)
+            newimg <- magick::image_resize(newimg, geometry = "800x800>")
+            newimg <- magick::image_despeckle(newimg)
+            newimg <- magick::image_enhance(newimg)
+            newimg <- magick::image_background(newimg, "white", flatten = TRUE)
+            tmpimg <- tempfile(fileext = ".png")
+            magick::image_write(newimg, tmpimg, flatten = TRUE)
+            body <- mathpix_api(img = tmpimg, trial = trial)
+
+            ## if still not good, exit
+            if (body == "") {
+                stop("Still unable to process image after retrying. Exiting", call. = FALSE)
+            } else {
+                message("Ignore warnings; conversion appears successful.")
+            }
+
+        } else {
+            stop("Unable to process image. Use retry=TRUE to try pre-processing first. Exiting", call. = FALSE)
+        }
+    }
+
     return(paste(header, body, footer))
+
 }
 
 #' Convert an image of an equation to a 'LaTeX' expression
@@ -125,6 +158,9 @@ rmarkdown_block <- function(img, trial = FALSE) {
 #' @md
 #'
 #' @inheritParams mathpix_api
+#' @param retry If Mathpix is not able to process the image, should we try again with
+#'   a re-processed image?
+#' @param insert Should the resulting LaTeX block be inserted into the document (default: TRUE)
 #'
 #' @details I have obtained an API key for use with this app, which I have
 #'   included. If you have your own API key feel free to save that in your
@@ -133,7 +169,7 @@ rmarkdown_block <- function(img, trial = FALSE) {
 #'   be used (as found on the mathpix API documentation site). Refer to
 #'   \url{https://docs.mathpix.com/} for full details.
 #'
-#' @return (invisibly) the `rmarkdown` equation
+#' @return (invisibly) the `rmarkdown` LaTeX equation block
 #'
 #' @importFrom rstudioapi insertText isAvailable
 #'
@@ -142,13 +178,15 @@ rmarkdown_block <- function(img, trial = FALSE) {
 #' @export
 #'
 #' @examples
-#' mathpix(system.file("eq_no_01.png", package = "mathpix"))
+#' mathpix(system.file("extdata", "eq_no_01.png", package = "mathpix"), insert = FALSE)
 #' ## returns
 #' ## $$\n \\int \\frac { 4x } { \\sqrt { x ^ { 2} + 1} } d x \n$$
-mathpix <- function(img, trial = FALSE) {
+mathpix <- function(img, trial = FALSE, insert = TRUE, retry = FALSE) {
 
-    block <- rmarkdown_block(img, trial)
-    if (rstudioapi::isAvailable() && interactive()) rstudioapi::insertText(text = block)
+    block <- rmarkdown_block(img, trial, retry = retry)
+    if (!is.null(block) & insert) {
+        if (rstudioapi::isAvailable() && interactive()) rstudioapi::insertText(text = block)
+    }
     return(invisible(block))
 
 }

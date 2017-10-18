@@ -4,12 +4,15 @@
 \alias{rmarkdown_block}
 \title{Add LaTeX commands as an \code{rmarkdown} equation}
 \usage{
-rmarkdown_block(img, trial = FALSE)
+rmarkdown_block(img, trial = FALSE, retry = FALSE)
 }
 \arguments{
 \item{img}{image to be converted to LaTeX}
 
 \item{trial}{should the trial API key be used (see Details)?}
+
+\item{retry}{If Mathpix is not able to process the image, should we try again with
+a re-processed image?}
 }
 \value{
 an \code{rmarkdown} equation block

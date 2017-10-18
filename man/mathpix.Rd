@@ -4,15 +4,20 @@
 \alias{mathpix}
 \title{Convert an image of an equation to a 'LaTeX' expression}
 \usage{
-mathpix(img, trial = FALSE)
+mathpix(img, trial = FALSE, insert = TRUE, retry = FALSE)
 }
 \arguments{
 \item{img}{image to be converted to LaTeX}
 
 \item{trial}{should the trial API key be used (see Details)?}
+
+\item{insert}{Should the resulting LaTeX block be inserted into the document (default: TRUE)}
+
+\item{retry}{If Mathpix is not able to process the image, should we try again with
+a re-processed image?}
 }
 \value{
-(invisibly) the \code{rmarkdown} equation
+(invisibly) the \code{rmarkdown} LaTeX equation block
 }
 \description{
 Given an image file location, \code{mathpix} performs the relevant
@@ -30,7 +35,7 @@ be used (as found on the mathpix API documentation site). Refer to
 \url{https://docs.mathpix.com/} for full details.
 }
 \examples{
-mathpix(system.file("eq_no_01.png", package = "mathpix"))
+mathpix(system.file("extdata", "eq_no_01.png", package = "mathpix"), insert = FALSE)
 ## returns
 ## $$\\n \\\\int \\\\frac { 4x } { \\\\sqrt { x ^ { 2} + 1} } d x \\n$$
 }
