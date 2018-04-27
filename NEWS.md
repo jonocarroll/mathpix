@@ -1,3 +1,11 @@
+# mathpix 0.3.0
+
+* Maintenance release
+* More images work thanks to backend improvements from Mathpix service.
+  (updated tests accordingly).
+* Included covrpage test summary (see https://github.com/jonocarroll/mathpix/tree/master/tests)
+* Adjusted dependence to patchlevel 0
+
 # mathpix 0.2.0
 
 * Ability to not insert the LaTeX block `(insert = FALSE)`.
