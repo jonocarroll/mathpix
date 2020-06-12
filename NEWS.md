@@ -1,3 +1,8 @@
+# mathpix 0.4.0
+
+* Free API key has been deactivated due to overuse. Please supply your own. 
+   Visit https://dashboard.mathpix.com/ to sign up.
+
 # mathpix 0.3.0
 
 * Maintenance release

@@ -4,12 +4,10 @@
 \alias{mathpix_api}
 \title{Connect to the mathpix API and translate an image to LaTeX}
 \usage{
-mathpix_api(img, trial = FALSE)
+mathpix_api(img)
 }
 \arguments{
 \item{img}{image to be converted to LaTeX}
-
-\item{trial}{should the trial API key be used (see Details)?}
 }
 \value{
 a character string of LaTeX commands (or NULL if fails).
@@ -18,10 +16,8 @@ a character string of LaTeX commands (or NULL if fails).
 Connect to the mathpix API and translate an image to LaTeX
 }
 \details{
-I have obtained an API key for use with this app, which I have
-  included. If you have your own API key feel free to save that in your
+You must save your own API key in your
   environment (e.g. `~/.Renviron`) with the identifiers `MATHPIX_APP_ID` and
-  `MATHPIX_APP_KEY`. If this fails for some reason, the `trial` API key can
-  be used (as found on the 'Mathpix' API documentation site).
+  `MATHPIX_APP_KEY`. This can be tested with `mathpix:::credentials()`.
 }
 \keyword{internal}

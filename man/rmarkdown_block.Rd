@@ -4,12 +4,10 @@
 \alias{rmarkdown_block}
 \title{Add LaTeX commands as an \code{rmarkdown} equation}
 \usage{
-rmarkdown_block(img, trial = FALSE, retry = FALSE)
+rmarkdown_block(img, retry = FALSE)
 }
 \arguments{
 \item{img}{image to be converted to LaTeX}
-
-\item{trial}{should the trial API key be used (see Details)?}
 
 \item{retry}{If Mathpix is not able to process the image, should we try again with
 a re-processed image?}
@@ -22,10 +20,8 @@ Converts an image to LaTeX then inserts that into an \code{rmarkdown} equation
 (surrounded by $$).
 }
 \details{
-I have obtained an API key for use with this app, which I have
-included. If you have your own API key feel free to save that in your
-environment (e.g. \code{~/.Renviron}) with the identifiers \code{MATHPIX_APP_ID} and
-\code{MATHPIX_APP_KEY}. If this fails for some reason, the \code{trial} API key can
-be used (as found on the mathpix API documentation site).
+You must save your own API key in your
+environment (e.g. \verb{~/.Renviron}) with the identifiers \code{MATHPIX_APP_ID} and
+\code{MATHPIX_APP_KEY}. This can be tested with \code{mathpix:::credentials()}.
 }
 \keyword{internal}

@@ -4,12 +4,10 @@
 \alias{mathpix}
 \title{Convert an image of an equation to a 'LaTeX' expression}
 \usage{
-mathpix(img, trial = FALSE, insert = TRUE, retry = FALSE)
+mathpix(img, insert = TRUE, retry = FALSE)
 }
 \arguments{
 \item{img}{image to be converted to LaTeX}
-
-\item{trial}{should the trial API key be used (see Details)?}
 
 \item{insert}{Should the resulting LaTeX block be inserted into the document (default: TRUE)}
 
@@ -27,17 +25,14 @@ that image. When using 'RStudio', the resulting 'LaTeX' expression is
 automatically inserted into the current \code{rmarkdown} document.
 }
 \details{
-I have obtained an API key for use with this app, which I have
-included. If you have your own API key feel free to save that in your
-environment (e.g. \code{~/.Renviron}) with the identifiers \code{MATHPIX_APP_ID} and
-\code{MATHPIX_APP_KEY}. If this fails for some reason, the \code{trial} API key can
-be used (as found on the mathpix API documentation site). Refer to
-\url{https://docs.mathpix.com/} for full details.
+You must save your own API key in your
+environment (e.g. \verb{~/.Renviron}) with the identifiers \code{MATHPIX_APP_ID} and
+\code{MATHPIX_APP_KEY}. This can be tested with \code{mathpix:::credentials()}.
 }
 \examples{
 mathpix(system.file("extdata", "eq_no_01.png", package = "mathpix"), insert = FALSE)
 ## returns
-## $$\\n \\\\int \\\\frac { 4x } { \\\\sqrt { x ^ { 2} + 1} } d x \\n$$
+## $$\n \\int \\frac { 4x } { \\sqrt { x ^ { 2} + 1} } d x \n$$
 }
 \references{
 \url{https://mathpix.com/}

@@ -1,9 +1,26 @@
 language: R
 sudo: false
 cache: packages
+addons:
+  apt:
+    update: true
+    sources:
+      - sourceline: 'ppa:opencpu/imagemagick'
+      - sourceline: 'ppa:ubuntugis-unstable/ppa'
+    packages:
+      - libmagick++-dev
+      - librsvg2-dev
+      - libwebp-dev
+      - libpoppler-cpp-dev
+      - libtesseract-dev
+      - libleptonica-dev
+      - tesseract-ocr-eng
+      - r-cran-rgdal
+      - libfftw3-dev
+      - cargo
 env:
   global:
-    secure: lcTPSM1sBMWJNcT9XwdWet1MVWfadGxESFM/M+uZUYz70DKPkrLmc/UHO9foUwq0c8CtcLMCdxKFt7driWvu6SSRSfIMDIaI8RErKXNXlWUCxWA8a1ilH1B3Ub1s9p7kDUvvkLcVJE9bQI6nl2WB/E2Y1Y7+rsTmmzyIA5uoXRBVNWaNU8UXFZbMfzbKA9s/rqITnlM+N951UrM5ZNx3/59MOyDo7StgR3P3GirM7h0GzNb1mh8HGTLke1vDppjft5QBiXXbmHPN83We+7faGO20tDC39w+PvNkwML6YfRmzsZlgZD3xlciIOznp/Yx6U+W7BsN2D0zwmJad+lT8wBahiFhhyCY6BbrAeR2/GDQGKq6wQrM+LIlfVpKFDBacQEmiIqXQU2bHf7R+b8+T7l/iO00TE0VYj8kJe9ewRmjNxPEWnwQ+LmLLkS34l2VzwWQuaUJsFfss43oOlxnEb4UitnosiatDejPbiZW4Kbu4NW5rHRrXqy5srzj2iMdKm2OU7nGNHbYdZI2ZKPSmjrIvbPsG8CbNFGmy8P4xMHtUvI5KvcWP0vRghuZe6iouousqe3E0yEPolgpZoiDHPSpNp324mwqrIXM+rztyxoh8H0cFM457INs9C8F2vY54vAmT+jXf76mNknCYfDaVnkJNz3WVRwIZOto+WKB/vZs=
-    secure: LtE5VxbjX3Mq66XgBeyfmXpAhAP5wAi26kKzBCKCJ5RDmHu9QOYyxQrPVqcrOrawoMCBDIfuqJvFwDiKD2M7O+3oeOgWqsyVb2J64LpFdA1lspQvencrlAB/PFp0usvWPYp8HEvT22YadTbwjZ3+4HTKQnq9JYMp+5NEsWGLZx5cM9d8mmljpkO7q2RtzdWcg3lz9y442+EgrdyBf6AMcny/pYVZUzDjE2J6OzCsKgq0EiWw5W2jbyeJK54Rsdqpdn6Wb6dbs/tMgJdi4pZ5RSmR04lIzVm3gqKvaE3vRlEbLNig3ZTWWQWy1zJd/FmY6rLRBJ7O5Ie+nnz4dhuYdj3WGJh/Jv7Wyun1KzcaingS+PpK2SnasoNK5dwe2K21c7vKbmBbFu8Ot1zrb0YLppJehUOIKhPJXhNzNoDRK5aSLXm2MvO34edOw8G7901auLE2W44NFeXFxt+nMPnbjHXh1ZaBKruHpFyxdt1h4tvVAsD83aQqraAsWoASovyMnLAeOQE8vg84IVFkLZ1O9KD1W9fePeKPcLyR1RVPW3H5ccOTHcg+7MPJwKy1/RRRgDTCBi5o/lPeKlO3z0wxMJ59b+H4mDgGftJRVJBnSLvchmqMy7xZNbeURHy+I+TDi2cwpkx/wJYHO35XmbzNaCnnEKDMZRVH0bjeQVVONP8=
+    - secure: Vr64RfzeKZAeMTr8pvfuy87Wi5Z7iOrJzrHuH67COlyFxTxnwBch3AGyqFfs4sCuZjhpLeIuki8hmA4r6worOByrfQXpf8Hm7deZ1ULsnaTgzN2UCDFaupqSj9uxu1l3/WHAbSimbcx2RHpxSFhi+1SiZJSGaptzLwwiHQVuOp/ff524I0a6Hdi0LN6h7mG87aYbTmo5mDh+kaC2dcf7X8oq7RH/zT1LnvzLTBywtm2cLtPFGDLuss1Ja8VlAm4fVrSAPyLxFgriQifcOmZmSd73hI0Z4kp+CP8nEeBSgzjvlkwoSYbd17qYtXqQxh6YmfvF0RUqXwPA6Vyr0u70dYKsiY+n5eAaM4T+YVg5eUkZEHPpVPC4g5zMP8slhUdgm5Zj4LytZ9MGZR4zI2xy8D/Rzaw6Ly+je4CwPxwyswD7t903BVrzMpP043xKZYk7u1SJlFfMFLdZTpXyTkrlLPZTnAZl0XU7zcCRjYZYxTulECgRB9M28xSXx+0BivziDT/VWhoP1GN572RjZWDjQ8ic4LOfhcIferjqj0uj0q0bdKkiBtiTQxCmR1Z5exJ5gT66QVw3ArGAXwY3ko3vjlNh/25mcwnhJEZ2NPxbd//m8LcmID2ioWsb3K97wYB+7xjsm8+5lcf+bmgkvhVfbgjjK/lGqKxK4AlYuUrbaC4=
+    - secure: FNqQ7qpyDOejzABebVTJqXHHfXsB7N/JYrEqfspc1Y68wz/fAlfazloolUcBx66W+9Mw7IZoONhuLj/MexwpOsEtGy/JVMv2xZZOnIPyIiB3H0k93YYgMb3kZdfEXv6E9lYGkCdxqieC3BT7ICtRKyhSp/0CLULZdVZ2Dhoja5sw1FQyKsQ+vsmvBlm+x1UO3k1QJhPRFwgRZveU1F8vW6hmrN2TIogO0pEv+jnv5I8th+yRVV1ypcr++m4btD/DC+PxQUQ8fsJ9CalmuEh6pSx4jdhFWckG5GGoLk8sZPI1OcKianfMBcckqornvTuvz+3pDajAx3Oh3BT4VNYL0zVoSLz6woDR2WVyx04mkWZ3M2V7SkISIFVi/MTt8NMfdbmdMAbKZF3TN8QYiwaKtz72BDnLEy5NErEsK6YdEaB4Iu+mUbecGBi/K25uTv8sOOpjN6HW3WDXjccoFqb0+/7uIKAldbNTggJiAzeOWUTeODeQa2BVrip0/1oSh4LknusyJPO6ap7e3eu+QjWCMYGSr+h7+IvxtjmoPtsuqLfrmcIoZPsrqxr+Dx+aJKif8k8Y3plD/Z551bET0ETw+oSBzrc06iAxQFoOHft0HmHpisQ9UtH3fTWEEt4of3VDBZjcg9CSNOP6/mAF8j+qG8RRFvmSZFSuIU22DTt1uQ0=
 after_success:
   - Rscript -e 'covr::codecov()'

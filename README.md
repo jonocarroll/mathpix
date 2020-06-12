@@ -1,18 +1,31 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 ![](./tools/logo_blue.png)
 
-mathpix
-=======
+# mathpix
 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/mathpix)](https://cran.r-project.org/package=mathpix) [![packageversion](https://img.shields.io/badge/Package%20version-0.3.0-orange.svg?style=flat-square)](commits/master) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--27-yellowgreen.svg)](/commits/master)
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/mathpix)](https://cran.r-project.org/package=mathpix)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.3.0-orange.svg?style=flat-square)](commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2020--06--12-yellowgreen.svg)](/commits/master)
 
-[![Linux/Mac Travis Build Status](https://img.shields.io/travis/jonocarroll/mathpix/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/jonocarroll/mathpix) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jonocarroll/mathpix?branch=master&svg=true)](https://ci.appveyor.com/project/jonocarroll/mathpix) [![codecov](https://codecov.io/gh/jonocarroll/mathpix/branch/master/graph/badge.svg)](https://codecov.io/gh/jonocarroll/mathpix)
+[![Linux/Mac Travis Build
+Status](https://img.shields.io/travis/jonocarroll/mathpix/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/jonocarroll/mathpix)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/jonocarroll/mathpix?branch=master&svg=true)](https://ci.appveyor.com/project/jonocarroll/mathpix)
+[![codecov](https://codecov.io/gh/jonocarroll/mathpix/branch/master/graph/badge.svg)](https://codecov.io/gh/jonocarroll/mathpix)
 
-[![Downloads](http://cranlogs.r-pkg.org/badges/mathpix)](http://www.r-pkg.org/pkg/mathpix) [![GitHub forks](https://img.shields.io/github/forks/jonocarroll/mathpix.svg)](https://github.com/jonocarroll/mathpix/network) [![GitHub stars](https://img.shields.io/github/stars/jonocarroll/mathpix.svg)](https://github.com/jonocarroll/mathpix/stargazers) [![Twitter](https://img.shields.io/twitter/url/https/github.com/jonocarroll/mathpix.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
+[![Downloads](http://cranlogs.r-pkg.org/badges/mathpix)](http://www.r-pkg.org/pkg/mathpix)
+[![GitHub
+forks](https://img.shields.io/github/forks/jonocarroll/mathpix.svg)](https://github.com/jonocarroll/mathpix/network)
+[![GitHub
+stars](https://img.shields.io/github/stars/jonocarroll/mathpix.svg)](https://github.com/jonocarroll/mathpix/stargazers)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/jonocarroll/mathpix.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
 
-Installation:
--------------
+## Installation:
 
 `mathpix` is now on CRAN, so you can install using
 
@@ -20,21 +33,32 @@ Installation:
 install.packages("mathpix")
 ```
 
-If you're after newer development features (if there are any); you can install from GitHub using
+If you’re after newer development features (if there are any); you can
+install from GitHub using
 
 ``` r
 devtools::install_github("jonocarroll/mathpix")
 ```
 
-Trial Authentication
---------------------
+## Authentication
 
-I have included a general API key with this package, but misuse of it will result in it being cancelled. There is also a trial API key which can be invoked using the `trial = TRUE` argument to some functions.
+The free API key has been removed due to overuse. Please sign up at
+<https://dashboard.mathpix.com/> then save your ID and key in your
+`.Renviron` file as
 
-Usage
------
+    MATHPIX_APP_ID='yourid'
+    MATHPIX_APP_KEY='yourkey'
 
-If you have an image you would rather properly encode in LaTeX, for example
+Note that this requires you to accept Mathpix’s terms and conditions and
+sign up for any relevant pricing scheme.
+
+You can check that your credentials are loaded correctly with
+`credentials()`.
+
+## Usage
+
+If you have an image you would rather properly encode in LaTeX, for
+example
 
 ![](./tools/integral.jpg)
 
@@ -44,7 +68,8 @@ then simply calling
 mathpix("./integral.jpg")
 ```
 
-(with the appropriate path to the file) will insert a LaTeX block into your document which will render what the image represents
+(with the appropriate path to the file) will insert a LaTeX block into
+your document which will render what the image represents
 
     $$
      \int \frac { 4 x } { \sqrt { x ^ { 2 } + 1 } } d x  
@@ -68,29 +93,25 @@ mathpix("matrix_3x3.jpg")
 
 ![](./tools/eq_no_02.png)
 
-If your image only result in warnings and no LaTeX, use `retry = TRUE` to attempt some pre-processing of the image into a more amenable form. Unfortunately, there are still images which fail.
+If your image only result in warnings and no LaTeX, use `retry = TRUE`
+to attempt some pre-processing of the image into a more amenable form.
+Unfortunately, there are still images which fail.
 
-To *not* insert the resulting equation directly into your document, but rather store it in a variable, use `insert = FALSE`.
+To *not* insert the resulting equation directly into your document, but
+rather store it in a variable, use `insert = FALSE`.
 
-If you also wish to generate the images (although `rmarkdown` will gladly do this for you) this can be achieved using
+If you also wish to generate the images (although `rmarkdown` will
+gladly do this for you) this can be achieved using
 
 ``` r
 render_latex(latex, fileDir)
 ```
 
-where `latex` is the LaTeX generated by `mathpix()` (or any other escaped LaTeX) and `fileDir` is the (optional) directory where you wish to save the image (by default, a temp file). This requires that you have `pdflatex` set up correctly and available on your machine.
+where `latex` is the LaTeX generated by `mathpix()` (or any other
+escaped LaTeX) and `fileDir` is the (optional) directory where you wish
+to save the image (by default, a temp file). This requires that you have
+`pdflatex` set up correctly and available on your machine.
 
-Full Authentication
--------------------
-
-Obtain a Mathpix API key [using the Mathpix Dashboard](https://dashboard.mathpix.com) (note that this requires you to accept Mathpix's terms and conditions and sign up for any relevant pricing scheme) then set the following values in your `~/.Renviron` file
-
-``` r
-MATHPIX_APP_ID=yourID
-MATHPIX_APP_KEY=yourKEY
-```
-
-API Documentation
------------------
+## API Documentation
 
 Refer to <http://docs.mathpix.com/>
