@@ -6,7 +6,7 @@ addons:
     update: true
     sources:
       - sourceline: 'ppa:opencpu/imagemagick'
-      - sourceline: 'ppa:ubuntugis-unstable/ppa'
+      - sourceline: 'ppa:ubuntugis/ppa'
     packages:
       - libmagick++-dev
       - librsvg2-dev
