@@ -10,6 +10,6 @@ credentials()
 a list of detected credentials (or this package's credentials)
 }
 \description{
-Checks environmental variables for \code{MATHPIX_APP_ID} and \code{MATHPIX_APP_KEY} values
+Checks environmental variables for \code{MATHPIX_APP_ID} and \code{MATHPIX_APP_KEY} values.
 }
 \keyword{internal}
