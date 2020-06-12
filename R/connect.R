@@ -3,8 +3,8 @@
 #' Checks environmental variables for `MATHPIX_APP_ID` and `MATHPIX_APP_KEY` values.
 #'
 #' @md
-#' @keywords internal
 #' @importFrom utils askYesNo
+#' @export
 #' @return a list of detected credentials (or this package's credentials)
 credentials <- function() {
 
