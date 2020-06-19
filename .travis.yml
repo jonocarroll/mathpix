@@ -1,6 +1,8 @@
 language: R
 sudo: false
 cache: packages
+before_install:
+  - R -e 'install.packages("rgdal", repos=c("http://R-Forge.R-project.org", "http://cran.rstudio.com"))
 addons:
   apt:
     update: true
