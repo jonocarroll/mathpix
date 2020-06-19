@@ -1,15 +1,17 @@
 language: R
 sudo: false
 cache: packages
-before_install:
-  - R -e 'install.packages("rgdal", repos=c("http://R-Forge.R-project.org", "http://cran.rstudio.com"))
 addons:
   apt:
     update: true
     sources:
       - sourceline: 'ppa:opencpu/imagemagick'
       - sourceline: 'ppa:ubuntugis/ppa'
+      - sourceline: 'ppa:ubuntugis/ubuntugis-unstable'
     packages:
+      - libudunits2-dev
+      - libgdal-dev
+      - libproj-dev
       - libmagick++-dev
       - librsvg2-dev
       - libwebp-dev
@@ -17,7 +19,6 @@ addons:
       - libtesseract-dev
       - libleptonica-dev
       - tesseract-ocr-eng
-      - r-cran-rgdal
       - libfftw3-dev
       - cargo
 env:
@@ -26,3 +27,5 @@ env:
     - secure: FNqQ7qpyDOejzABebVTJqXHHfXsB7N/JYrEqfspc1Y68wz/fAlfazloolUcBx66W+9Mw7IZoONhuLj/MexwpOsEtGy/JVMv2xZZOnIPyIiB3H0k93YYgMb3kZdfEXv6E9lYGkCdxqieC3BT7ICtRKyhSp/0CLULZdVZ2Dhoja5sw1FQyKsQ+vsmvBlm+x1UO3k1QJhPRFwgRZveU1F8vW6hmrN2TIogO0pEv+jnv5I8th+yRVV1ypcr++m4btD/DC+PxQUQ8fsJ9CalmuEh6pSx4jdhFWckG5GGoLk8sZPI1OcKianfMBcckqornvTuvz+3pDajAx3Oh3BT4VNYL0zVoSLz6woDR2WVyx04mkWZ3M2V7SkISIFVi/MTt8NMfdbmdMAbKZF3TN8QYiwaKtz72BDnLEy5NErEsK6YdEaB4Iu+mUbecGBi/K25uTv8sOOpjN6HW3WDXjccoFqb0+/7uIKAldbNTggJiAzeOWUTeODeQa2BVrip0/1oSh4LknusyJPO6ap7e3eu+QjWCMYGSr+h7+IvxtjmoPtsuqLfrmcIoZPsrqxr+Dx+aJKif8k8Y3plD/Z551bET0ETw+oSBzrc06iAxQFoOHft0HmHpisQ9UtH3fTWEEt4of3VDBZjcg9CSNOP6/mAF8j+qG8RRFvmSZFSuIU22DTt1uQ0=
 after_success:
   - Rscript -e 'covr::codecov()'
+before_install:
+  - R -e 'install.packages("rgdal", repos=c("http://R-Forge.R-project.org", "http://cran.rstudio.com"))'
