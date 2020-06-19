@@ -21,7 +21,7 @@ BugReports: https://github.com/jonocarroll/mathpix/issues
 Suggests:
     testthat,
     covr
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Imports:
     purrr,
     base64enc,

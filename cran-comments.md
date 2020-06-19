@@ -1,17 +1,16 @@
-## Maintenance release
+## Update to remove free API
 
 ## Test environments
-* local ubuntu 17.10, R 3.4.4
+* local Pop!_OS 19.04, R 3.6.2
 * rhub::check_for_cran() 
-    Windows Server 2008 R2 SP1, R-devel, 32/64 bit:  OK
-    Ubuntu Linux 16.04 LTS, R-release, GCC:          OK
-    Fedora Linux, R-devel, clang, gfortran:          OK
-* travis-ci Ubuntu 14.04.5 LTS, R 3.5.0:             OK
-* appveyor i386-w64-mingw32/i386 (32-bit), R 3.5.0:  OK
+    Windows Server 2008 R2 SP1, R-devel, 32/64 bit:    OK
+* travis-ci Ubuntu 16.04.6 LTS, R 4.0.0 (2020-04-24):  OK
+* appveyor R 4.0.1 Patched (2020-06-10 r78678)
+    Platform: x86_64-w64-mingw32/x64 (64-bit):         OK
 * win-builder
-    R-devel (R Under development (unstable) r74647): OK
-    R-release (R 3.5.0):                             OK 
-    R-oldrelease (R 3.4.4):                          OK
+    R-devel (R Under development (unstable) (2020-06-12 r78687)): OK
+    R-release (4.0.0 (2020-04-24)):                               OK
+    R-oldrelease (3.6.3 (2020-02-29)):                            OK 
 
 ## R CMD check results
 
