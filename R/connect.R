@@ -195,9 +195,10 @@ rmarkdown_block <- function(img, retry = FALSE) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' mathpix(system.file("extdata", "eq_no_01.png", package = "mathpix"), insert = FALSE)
 #' ## returns
-#' ## $$\n \\int \\frac { 4x } { \\sqrt { x ^ { 2} + 1} } d x \n$$
+#' ## $$\n \\int \\frac { 4x } { \\sqrt { x ^ { 2} + 1} } d x \n$$}
 mathpix <- function(img, insert = TRUE, retry = FALSE) {
 
     block <- rmarkdown_block(img, retry = retry)
