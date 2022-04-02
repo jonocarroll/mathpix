@@ -1,16 +1,19 @@
-## Update to remove free API
+## Update to align to texPreview 2.0.0
 
 ## Test environments
-* local Pop!_OS 19.04, R 3.6.2
+* local Pop!_OS 21.04, R 4.1.2
 * rhub::check_for_cran() 
-    Windows Server 2008 R2 SP1, R-devel, 32/64 bit:    OK
-* travis-ci Ubuntu 16.04.6 LTS, R 4.0.0 (2020-04-24):  OK
-* appveyor R 4.0.1 Patched (2020-06-10 r78678)
-    Platform: x86_64-w64-mingw32/x64 (64-bit):         OK
+    Windows Server 2022, R-devel, 64 bit:       NOTE
+    Ubuntu Linux 20.04.1 LTS, R-release, GCC:   OK
+    Fedora Linux, R-devel, clang, gfortran:     OK
+    
+    NOTE: 
+    Found the following files/directories:
+      'lastMiKTeXException'
 * win-builder
-    R-devel (R Under development (unstable) (2020-06-12 r78687)): OK
-    R-release (4.0.0 (2020-04-24)):                               OK
-    R-oldrelease (3.6.3 (2020-02-29)):                            OK 
+    R-devel (R Under development (unstable) (4.2.0 alpha (2022-04-01 r82059 ucrt)): OK
+    R-release (4.1.3 (2022-03-10)):             OK
+    R-oldrelease (4.0.5 (2021-03-31)):          OK 
 
 ## R CMD check results
 

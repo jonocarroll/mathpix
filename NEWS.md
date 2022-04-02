@@ -1,3 +1,9 @@
+# mathpix 0.5.0
+
+* Align to texPreview 2.0.0 (texPreview -> tex_preview)
+* Removed examples as mathpix service now asks for $20 to get a free key
+* Please request an API key at https://accounts.mathpix.com
+
 # mathpix 0.4.0
 
 * Free API key has been deactivated due to overuse. Please supply your own. 

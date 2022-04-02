@@ -167,6 +167,12 @@ rmarkdown_block <- function(img, retry = FALSE) {
 
 }
 
+# @examples
+# \dontrun{
+# mathpix(system.file("extdata", "eq_no_01.png", package = "mathpix"), insert = FALSE)
+# ## returns
+# ## $$\n \\int \\frac { 4x } { \\sqrt { x ^ { 2} + 1} } d x \n$$}
+
 #' Convert an image of an equation to a 'LaTeX' expression
 #'
 #' Given an image file location, \code{mathpix} performs the relevant
@@ -193,12 +199,6 @@ rmarkdown_block <- function(img, retry = FALSE) {
 #' @references \url{https://mathpix.com/}
 #'
 #' @export
-#'
-#' @examples
-#' \dontrun{
-#' mathpix(system.file("extdata", "eq_no_01.png", package = "mathpix"), insert = FALSE)
-#' ## returns
-#' ## $$\n \\int \\frac { 4x } { \\sqrt { x ^ { 2} + 1} } d x \n$$}
 mathpix <- function(img, insert = TRUE, retry = FALSE) {
 
     block <- rmarkdown_block(img, retry = retry)
@@ -209,29 +209,31 @@ mathpix <- function(img, insert = TRUE, retry = FALSE) {
 
 }
 
+# @examples
+# \dontrun{
+# ## requires pdflatex
+# latex_expression <- "$$\\int \\frac { 4 x } { \\sqrt { x ^ { 2 } + 1 } } d x$$"
+# render_latex(latex_expression)}
+
 #' Convert a 'LaTeX' expression to an image (render)
 #'
-#' This calls \code{\link[texPreview]{texPreview}} to render a 'LaTeX'
+#' This calls \code{\link[texPreview]{tex_preview}} to render a 'LaTeX'
 #' expression into an image, either as a temporary file or saved to disk.
 #'
 #' @param latex 'LaTeX' code to be evaluated. Surround in \code{$} or \code{$$}.
 #' @param fileDir directory in which to save the image to (defaults to
 #'   `/tmp/tempfile()`).
-#' @param ... other options to pass to \code{\link[texPreview]{texPreview}}.
+#' @param ... other options to pass to \code{\link[texPreview]{tex_preview}}.
 #'
 #' @return NULL (invisibly)
 #'
 #' @importFrom purrr safely
+#' @importFrom texPreview tex_preview
 #'
 #' @export
-#' @examples
-#' \dontrun{
-#' ## requires pdflatex
-#' latex_expression <- "$$\\int \\frac { 4 x } { \\sqrt { x ^ { 2 } + 1 } } d x$$"
-#' render_latex(latex_expression)}
 render_latex <- function(latex, fileDir = NULL, ...) {
 
-    safe_png <- purrr::safely(texPreview::texPreview)
+    safe_png <- purrr::safely(texPreview::tex_preview)
     img <- safe_png(obj = latex, stem = "eq", fileDir = fileDir)
     if (!is.null(img$error)) stop(img$error)
     return(invisible(NULL))

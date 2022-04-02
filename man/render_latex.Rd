@@ -12,18 +12,12 @@ render_latex(latex, fileDir = NULL, ...)
 \item{fileDir}{directory in which to save the image to (defaults to
 `/tmp/tempfile()`).}
 
-\item{...}{other options to pass to \code{\link[texPreview]{texPreview}}.}
+\item{...}{other options to pass to \code{\link[texPreview]{tex_preview}}.}
 }
 \value{
 NULL (invisibly)
 }
 \description{
-This calls \code{\link[texPreview]{texPreview}} to render a 'LaTeX'
+This calls \code{\link[texPreview]{tex_preview}} to render a 'LaTeX'
 expression into an image, either as a temporary file or saved to disk.
-}
-\examples{
-\dontrun{
-## requires pdflatex
-latex_expression <- "$$\\\\int \\\\frac { 4 x } { \\\\sqrt { x ^ { 2 } + 1 } } d x$$"
-render_latex(latex_expression)}
 }

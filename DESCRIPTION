@@ -1,6 +1,6 @@
 Package: mathpix
 Title: Support for the 'Mathpix' API (Image to 'LaTeX')
-Version: 0.4.0
+Version: 0.5.0
 Authors@R: person("Jonathan", "Carroll", 
  email = "rpkg@jcarroll.com.au", 
  role = c("aut", "cre"), 
@@ -21,12 +21,12 @@ BugReports: https://github.com/jonocarroll/mathpix/issues
 Suggests:
     testthat,
     covr
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.2
 Imports:
     purrr,
     base64enc,
     httr,
     rstudioapi,
-    texPreview,
+    texPreview (>= 2.0.0),
     magick,
     utils
