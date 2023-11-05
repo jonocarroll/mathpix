@@ -1,3 +1,7 @@
+# mathpix 0.6.0
+
+* Removed texPreview supoprt (archived on CRAN)
+
 # mathpix 0.5.0
 
 * Align to texPreview 2.0.0 (texPreview -> tex_preview)
