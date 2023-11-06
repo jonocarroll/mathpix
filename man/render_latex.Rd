@@ -12,12 +12,12 @@ render_latex(latex, fileDir = NULL, ...)
 \item{fileDir}{directory in which to save the image to (defaults to
 `/tmp/tempfile()`).}
 
-\item{...}{other options to pass to \code{\link[texPreview]{tex_preview}}.}
+\item{...}{other options to pass to \code{tex_preview}.}
 }
 \value{
 NULL (invisibly)
 }
 \description{
-This calls \code{\link[texPreview]{tex_preview}} to render a 'LaTeX'
+This calls \code{tex_preview} to render a 'LaTeX'
 expression into an image, either as a temporary file or saved to disk.
 }

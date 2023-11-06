@@ -217,25 +217,24 @@ mathpix <- function(img, insert = TRUE, retry = FALSE) {
 
 #' Convert a 'LaTeX' expression to an image (render)
 #'
-#' This calls \code{\link[texPreview]{tex_preview}} to render a 'LaTeX'
+#' This calls \code{tex_preview} to render a 'LaTeX'
 #' expression into an image, either as a temporary file or saved to disk.
 #'
 #' @param latex 'LaTeX' code to be evaluated. Surround in \code{$} or \code{$$}.
 #' @param fileDir directory in which to save the image to (defaults to
 #'   `/tmp/tempfile()`).
-#' @param ... other options to pass to \code{\link[texPreview]{tex_preview}}.
+#' @param ... other options to pass to \code{tex_preview}.
 #'
 #' @return NULL (invisibly)
 #'
 #' @importFrom purrr safely
-#' @importFrom texPreview tex_preview
 #'
 #' @export
 render_latex <- function(latex, fileDir = NULL, ...) {
-
-    safe_png <- purrr::safely(texPreview::tex_preview)
-    img <- safe_png(obj = latex, stem = "eq", fileDir = fileDir)
-    if (!is.null(img$error)) stop(img$error)
+    .Deprecated(msg = "texPreview has been archived on CRAN, so this functionality is no longer supported.")
+    # safe_png <- purrr::safely(texPreview::tex_preview)
+    # img <- safe_png(obj = latex, stem = "eq", fileDir = fileDir)
+    # if (!is.null(img$error)) stop(img$error)
     return(invisible(NULL))
 
 }
